@@ -16,17 +16,18 @@ const LoginPage = () => {
         return username && password;
         },[username,password])
 
-     
+        
 
     const hadleSubimit = async event =>{
         event.preventDefault();
-
+        console.log('hola')
         try {
+            console.log('await')
             await login({ username, password });
-            debugger
+            console.log('hola2')
         } catch(error){
             setError(error);
-            
+            console.log('soy el error')
         }
     }
     return (
@@ -55,15 +56,14 @@ const LoginPage = () => {
                 variant="primary"
                 className="loginForm-submit"
                 disabled={!isButtonEnabled}
-                >
+                >   
                 Log in
                 </Button>
             </form>
             {error && (
-        <div onClick={resetError} className="loginPage-error">
-          {error.message}
-        </div>
-      )}
+            <div onClick={resetError} className="loginPage-error">
+            {error.message}
+            </div>)}
         </div>
     )
 }

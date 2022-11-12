@@ -6,8 +6,10 @@ import storage from "./storage.js"
 
 
 export const login = credentials => {
-    return client.post('/api/auth​/login', credentials).then(({ accessToken }) => {
+    return client.post('/api/auth/login', credentials).then(({ accessToken }) => {
       setAuthorizationHeader(accessToken);
+      console.log('login')
+      debugger
       storage.set('auth', accessToken);
     });
   };
