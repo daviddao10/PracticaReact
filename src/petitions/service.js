@@ -5,12 +5,10 @@ import client,{
 import storage from "./storage.js"  
 
 
-export const login = credentials => {
+export const login = (credentials,remember)  => {
     return client.post('/api/auth/login', credentials).then(({ accessToken }) => {
       setAuthorizationHeader(accessToken);
-      console.log('login')
-      debugger
-      storage.set('auth', accessToken);
+      storage.set('auth', accessToken , remember);
     });
   };
   

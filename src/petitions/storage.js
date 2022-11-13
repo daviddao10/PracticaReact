@@ -7,8 +7,8 @@ const storage = {
       return JSON.parse(value);
     },
   
-    set(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
+    set(key, value,remember) {
+      remember ? localStorage.setItem(key, JSON.stringify(value)) : sessionStorage.setItem(key, JSON.stringify(value))
     },
   
     remove(key) {

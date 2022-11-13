@@ -1,38 +1,43 @@
 import { useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import FormField from "../common/FormField.js";
 import Button from "../common/Button.js"
 import { login } from "../petitions/service"
-
+import './css/LoginPage.css'
 const LoginPage = () => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null);
+    const [remember,setRemember] = useState(false)
+    const location = useLocation();
+    const navigate = useNavigate();
+
     
-    const handleChangeEmail = event => setUsername(event.target.value);
+    const handleChangeEmail = event => setEmail(event.target.value);
     const handleChangePassword = event => setPassword(event.target.value);
     const resetError = () => setError(null);
-
+    
     const isButtonEnabled = useMemo(()=>{
-        return username && password;
-        },[username,password])
+        return email && password;
+        },[email,password])
 
         
 
     const hadleSubimit = async event =>{
         event.preventDefault();
-        console.log('hola')
+        
         try {
-            console.log('await')
-            await login({ username, password });
-            console.log('hola2')
+            
+            await login({ email, password }, remember);
+            const to = location.state?.from?.pathname || '/adverts';
+            navigate(to, { replace: true });
         } catch(error){
             setError(error);
-            console.log('soy el error')
         }
     }
     return (
         <div className="loginPage">
-            <h1 className="loginPage-title">Log in to Twitterr</h1>
+            <h1 className="loginPage-title">Log in to Adverts</h1>
             <form onSubmit={hadleSubimit}>
                 <FormField
                 type="email"
@@ -40,7 +45,7 @@ const LoginPage = () => {
                 label="email"
                 className="loginForm-field"
                 onChange={handleChangeEmail}
-                value={username}
+                value={email}
                 />
                 <FormField
                 type="password"
@@ -50,6 +55,16 @@ const LoginPage = () => {
                 onChange={handleChangePassword}
                 value={password}
                 />
+                <input
+                type="checkbox" 
+                id="remember" 
+                name="remember" 
+                onClick={()=>setRemember(!remember)}
+                disabled={!isButtonEnabled}/>
+                
+                <label for="remember">
+                you want us to remember you</label>
+                
                 
                 <Button
                 type="submit"

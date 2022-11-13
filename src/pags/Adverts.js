@@ -1,5 +1,8 @@
+
+import Header from '../common/Header.js'
 const Adverts = ()=>{
     return(
-        hfhdhdh
+        <Header></Header>
     )
 }
+export default Adverts
