@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+
 import { Link, NavLink } from 'react-router-dom';
 
 const Header =({Link1, Link2})=>{
@@ -7,10 +7,10 @@ const Header =({Link1, Link2})=>{
         <header>
             <nav>
                 <div>
-                    <Link to="/adverts/newAdverts">New Adverts</Link>
+                    <Link to="/newAdverts">New Adverts</Link>
                 </div>
                 <div>
-                    <NavLink to="/">undifine</NavLink>
+                    <NavLink to="/adverts">Adverts</NavLink>
                 </div>
             </nav>
         </header>

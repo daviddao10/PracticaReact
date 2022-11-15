@@ -1,9 +1,9 @@
-import client from '../api/client';
+import client from '../API/client';
 
 const AdvertsUrl = '/api/v1/adverts';
 
-export const getLatestTweets = () => {
-  const url = `${AdvertsUrl}?_expand=user&_embed=likes&_sort=updatedAt&_order=desc`;
+export const getLatestTweets = (tags) => {
+  const url = `${AdvertsUrl}`;
   return client.get(url);
 };
 
@@ -16,3 +16,4 @@ export const createTweet = adverst => {
   const url = AdvertsUrl;
   return client.post(url, adverst);
 };
+
