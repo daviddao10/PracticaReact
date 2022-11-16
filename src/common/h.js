@@ -11,4 +11,5 @@ const p  = {
   }
   let {id,createdA,name, tags} = p
 
-  console.log(tags[0])
+  let a = '' || 'hola'
+  console.log(a)

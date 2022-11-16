@@ -11,13 +11,12 @@ const Advert = ({ createdAt ,name, sale, price,tags,photo}) => {
         </div>
         <div className="right">
           <div className="advert-header">
-            <span className="advert-name">{name}</span>
-            <span className="advert-username">{
-                sale ? 'to buy' : 'sell'
+            <span className="advert-name">nombre: {name}</span><br/>            <span className="advert-username">{
+                sale ? 'to buy ' : 'sell'
             }</span>
-
-            <span className="advert-separator">price: {price}</span>
-            <span>tags: {tags[0]}</span>
+            <br/>
+            <span className="advert-separator">price: {price}</span><br/>
+            <span>tags: {tags[0]}</span><br/>
             <time dateTime={createdAt}>{formatDistanceToNow(new Date())}</time>
           </div>
         </div>

@@ -2,23 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getTweetDetail } from '../petitions/serviceAdverts.js';
+import { relogin } from '../petitions/service'
+
+import Page from '../common/Page.js';
 
 const IdAdverts = props => {
   const [adverts, setAdverts] = useState(null);
   const { IdAdverts } = useParams();
   const navigate = useNavigate();
   const unmounteRef = useRef(false);
-
+   console.log(IdAdverts)
   useEffect(() => {
-    console.log('1')
+    relogin()
     getTweetDetail(IdAdverts)
       .then(adverts => {
-        console.log('have response');
-        // if (unmounteRef.current) {
-        //   console.log('do nothing');
-        //   return;
-        // }
-        console.log('set state');
         setAdverts(adverts);
       })
       .catch(error => {

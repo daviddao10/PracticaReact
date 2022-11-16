@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import Header from '../common/Header.js'
+import { useNavigate, useParams,Link } from 'react-router-dom';
+
 import { getLatestTweets } from '../petitions/serviceAdverts'
 import Page from "../common/Page"
 import Advert from '../common/advert.js'
 import Button from '../common/Button'
+import { relogin } from '../petitions/service'
 
 const EmptyList = () => (
     <div style={{ textAlign: 'center' }}>
@@ -15,10 +16,13 @@ const EmptyList = () => (
     </div>
   );
   const useAdverts = () => {
+    const navigate = useNavigate();
     const [adverts, setAdverts] = useState([]);
   
     useEffect(() => {
       const execute = async () => {
+
+        await relogin()
         const adverts = await getLatestTweets();
         setAdverts(adverts);
       };
@@ -31,8 +35,8 @@ const EmptyList = () => (
 const Adverts = props =>{
     const adverts = useAdverts()
     return(
-        <>
-        <Header></Header>
+      
+        
         <Page title="Do you want to buy?" {...props}>
             <div>
         {adverts.length ? (
@@ -50,7 +54,7 @@ const Adverts = props =>{
         )}
       </div>
         </Page>
-        </>
+      
     )
 }
 

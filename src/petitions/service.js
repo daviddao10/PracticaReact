@@ -1,3 +1,4 @@
+
 import client,{
     removeAuthorizationHeader,
     setAuthorizationHeader,
@@ -12,9 +13,14 @@ export const login = (credentials,remember)  => {
     });
   };
   
-  export const logout = () => {
+export const logout = () => {
     return Promise.resolve().then(() => {
       removeAuthorizationHeader();
       storage.remove('auth');
     });
   };
+
+export const relogin =()=>{
+ const accessToken= storage.get('auth')
+ setAuthorizationHeader(accessToken)
+}
