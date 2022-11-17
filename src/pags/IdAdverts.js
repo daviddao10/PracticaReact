@@ -6,13 +6,15 @@ import { relogin } from '../petitions/service'
 
 import Page from '../common/Page.js';
 import AdvertDetail from '../common/detailAdverts.js';
-
+import DeleteAdverts from '../common/deleteAdverts.js';
 const IdAdverts = props => {
   const [adverts, setAdverts] = useState(null);
   const { advertsId } = useParams();
   const navigate = useNavigate();
   const unmounteRef = useRef(false);
+  const id = {id:advertsId}
 
+  
   useEffect(() => {
     relogin()
     getTweetDetail(advertsId)
@@ -20,8 +22,13 @@ const IdAdverts = props => {
         setAdverts(adverts);
       })
       .catch(error=>{
+
         if (error.status === 404) {
           navigate('404');
+        }
+
+        if (error.message==='Unauthorized') {
+          navigate("/login")
         }
       })
       
@@ -36,7 +43,7 @@ const IdAdverts = props => {
   return (
     <Page title="Adverts detail" {...props}>
       <AdvertDetail {...adverts}/>
-      
+      <DeleteAdverts {...id}></DeleteAdverts>
     </Page>
   );
 };
