@@ -11,7 +11,7 @@ const Advert = ({ createdAt ,name, sale, price,tags}) => {
           <div className="advert-header">
             <p className="advert-name">nombre: {name}</p>           
             <span className="advert-username">{
-            sale ? 'Sell ' : 'Buy'
+            sale ? 'Sell' : 'Buy'
             }</span>
             <br/>
             <span className="advert-separator">price: {price}</span><br/>

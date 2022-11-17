@@ -7,7 +7,7 @@ const Header =({Link1, Link2})=>{
         <header>
             <nav>
                 <div>
-                    <Link to="/newAdverts">New Adverts</Link>
+                    <Link to="newAdverts">New Adverts</Link>
                 </div>
                 <div>
                     <NavLink to="/adverts">Adverts</NavLink>

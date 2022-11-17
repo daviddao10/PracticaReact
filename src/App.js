@@ -3,6 +3,7 @@ import Layout from './common/Layout.js';
 import LoginPage from './pags/LoginPage.js'
 import Adverts from './pags/Adverts.js';
 import IdAdverts from './pags/IdAdverts';
+import NewAdverts from './pags/newAdverts.js';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path='/adverts' element={<Layout/>}>
           <Route  index element={<Adverts/>}/> 
           <Route path=':advertsId' element={<IdAdverts/>} />
-          <Route path='newAdverts' element={<LoginPage/>} />
+          <Route path='newAdverts' element={<NewAdverts/>} />
         </Route>
        
         <Route path="/" element={<Navigate to="/login" />} />
