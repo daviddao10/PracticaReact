@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams,Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 import { getLatestTweets } from '../petitions/serviceAdverts'
 import Page from "../common/Page"
@@ -21,10 +21,18 @@ const EmptyList = () => (
   
     useEffect(() => {
       const execute = async () => {
-
-        await relogin()
-        const adverts = await getLatestTweets();
-        setAdverts(adverts);
+        try {
+          await relogin()
+          const adverts = await getLatestTweets();
+          setAdverts(adverts);
+          
+        } catch (error) {
+          
+          if (error.message==='Unauthorized') {
+            navigate("/login")
+          }
+        }
+        
       };
       execute();
       

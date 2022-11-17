@@ -1,14 +1,12 @@
 import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import Photo from'./Photo'
 
 
-const Advert = ({ createdAt ,name, sale, price,tags,photo}) => {
+
+const Advert = ({ createdAt ,name, sale, price,tags}) => {
     return (
       <article className="advert bordered">
-        <div className="left">
-          <Photo className="advert-photo" photo={photo} />
-        </div>
+        
         <div className="right">
           <div className="advert-header">
             <span className="advert-name">nombre: {name}</span><br/>            <span className="advert-username">{

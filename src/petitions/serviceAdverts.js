@@ -2,7 +2,7 @@ import client from '../API/client';
 
 const AdvertsUrl = '/api/v1/adverts';
 
-export const getLatestTweets = (tags) => {
+export const getLatestTweets = () => {
   const url = `${AdvertsUrl}`;
   return client.get(url);
 };
@@ -17,3 +17,7 @@ export const createTweet = adverst => {
   return client.post(url, adverst);
 };
 
+export const deleteAdverts = AdvertsId => {
+  const url = `${AdvertsUrl}/${AdvertsId}`;
+  return client.delete(url)
+}
