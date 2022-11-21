@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FormField from "../common/FormField.js";
 import Button from "../common/Button.js"
-import { login } from "../petitions/service"
+import { login, relogin } from "../petitions/service"
+
 import './css/LoginPage.css'
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -25,9 +26,9 @@ const LoginPage = () => {
 
     const hadleSubimit = async event =>{
         event.preventDefault();
-        
+         
         try {
-            
+            console.log(relogin())
             await login({ email, password }, remember);
             const to = location.state?.from?.pathname || '/adverts';
             navigate(to, { replace: true });

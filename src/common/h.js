@@ -11,5 +11,23 @@ const p  = {
   }
   let {id,createdA,name, tags} = p
 
+  const borrarItemen = function (array,a) {
+    for (var i = 0; i < 
+      array.length; i++) {
+     if (array[i] == a) {
+      for (var i2 = i; i2 < array.length - 1; i2++) {
+       array[i2] = array[i2 + 1];
+      }
+      array.length = array.length - 1;
+      return;
+     }
+    }
+   };
+
+
+   var frutas = ['manzana', 'banana', 'pera'];
+
+   borrarItemen(frutas,'banana')
+   console.log(frutas)
+
   let a = '' || 'hola'
-  console.log(a)

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Page from "../common/Page"
@@ -12,20 +12,26 @@ const NewAdverts = () =>{
     const navigate = useNavigate()
 
     const [name, setName] = useState('')
-    const [sale, setSale] = useState(Boolean)
+    const [sale, setSale] = useState('')
     const [price, setPrice] = useState(Number)
     const [tags, setTags]  = useState('')
     const [img, setImg] = useState('')
     
     const handleName= event => setName(event.target.value)
     const handlePrice= event => setPrice(event.target.value)
-    const handleImg= event => setImg(event.target.value)
+   // const handleImg= event => setImg(event.target.value)
+   const handleImg= event => setImg(event.target.files[0])
+  
 
+    let photo=''
+   img ==='' ? photo=null : photo=img
     const datos = {
         name: name,
         sale: sale,
         price: price,
         tags: [tags],
+       // photo:img
+        // cada vez que intento enviar con foto no me permite porque me dice que la propiedad de be existir
       }
     
     const submit = async event=>{
@@ -45,7 +51,14 @@ const NewAdverts = () =>{
               }
         }
     }
- 
+
+    const isButtonEnabled = useMemo(()=>{
+        let ifIsEmpty = Boolean
+        sale === '' ? ifIsEmpty=false: ifIsEmpty=true
+
+        return name && ifIsEmpty && price && tags;
+        },[name,sale, price, tags])
+        
    return( 
 <Page>
     <form onSubmit={submit}>
@@ -65,13 +78,9 @@ const NewAdverts = () =>{
         onChange={handlePrice}
         label='The price'
         />
-        <FormField
-        type="text"
-        placeholder="The imagen in url "
-        value={img}
-        onChange={handleImg}
-        label='The imagen'
-        />
+        <h2>Imagen</h2>
+        <input type="file" id="photo" name="photo" onChange={handleImg} />
+        
 
         <h2>Sale</h2>
         <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale(false)}} />
@@ -90,6 +99,7 @@ const NewAdverts = () =>{
         <label for="tags">work</label><br/>
 
         <Button
+        disabled={!isButtonEnabled}
         type="submit"
         >Post
         </Button>
