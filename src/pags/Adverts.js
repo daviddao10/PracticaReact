@@ -69,11 +69,17 @@ const Adverts = props =>{
     const handleName= event => setName(event.target.value)
     const handlePrice= event => setPrice(event.target.value)
 
-    useEffect(()=>{
-      setFilterTags(tagsInFileter(filterTags,tags))
+   // useEffect(()=>{
+     // setFilterTags(tagsInFileter(filterTags,tags))
 
-    },[setFilterTags,tagsInFileter,filterTags,tags])
+    //},[setFilterTags,tagsInFileter,filterTags,tags])
+
+    function a(){
+      setFilterTags(tagsInFileter(filterTags,tags))
+    }
     
+  console.log(tags)
+   console.log(filterTags)
 
 
     return(
@@ -95,7 +101,7 @@ const Adverts = props =>{
           <input value={sale} type="radio" id="sale" name="sale"  onChange={()=>{setSale(true)}}/>
           <label for="sale">Sell</label><br/>
           <h2>Tags</h2>
-          <input value={tags} type="checkbox"  onChange={()=>{setTags("lifestyle")}} />
+          <input value={tags} type="checkbox"  onChange={()=>{setTags("lifestyle")}} onClick={a} />
           <label for="tags">lifestyle</label><br/>
           <input value={tags} type="checkbox" onChange={()=>{setTags("mobile")}}/>
           <label for="tags">mobile</label><br/>

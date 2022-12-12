@@ -63,7 +63,7 @@ const LoginPage = () => {
                 onClick={()=>setRemember(!remember)}
                 disabled={!isButtonEnabled}/>
                 
-                <label for="remember">
+                <label name="remember">
                 you want us to remember you</label>
                 
                 

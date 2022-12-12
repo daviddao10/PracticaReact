@@ -30,7 +30,7 @@ const NewAdverts = () =>{
         sale: sale,
         price: price,
         tags: [tags],
-       // photo:img
+        //photo:img
         // cada vez que intento enviar con foto no me permite porque me dice que la propiedad de be existir
       }
     
