@@ -84,19 +84,19 @@ const NewAdverts = () =>{
 
         <h2>Sale</h2>
         <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale(false)}} />
-        <label for="sale">Buy</label><br/>
+        <label name="sale">Buy</label><br/>
         <input value={sale} type="radio" id="sale" name="sale"  onChange={()=>{setSale(true)}}/>
-        <label for="sale">Sell</label><br/>
+        <label name="sale">Sell</label><br/>
 
         <h2>Tags</h2>
         <input value={tags} type="radio" id="tags" name="tags" onChange={()=>{setTags("lifestyle")}} />
-        <label for="tags">lifestyle</label><br/>
+        <label name="tags">lifestyle</label><br/>
         <input value={tags} type="radio" id="tags" name="tags"  onChange={()=>{setTags("mobile")}}/>
-        <label for="tags">mobile</label><br/>
+        <label name="tags">mobile</label><br/>
         <input value={tags} type="radio" id="tags" name="tags" onChange={()=>{setTags("motor")}} />
-        <label for="tags">motor</label><br/>
+        <label name="tags">motor</label><br/>
         <input value={tags} type="radio" id="tags" name="tags"  onChange={()=>{setTags("work")}}/>
-        <label for="tags">work</label><br/>
+        <label name="tags">work</label><br/>
 
         <Button
         disabled={!isButtonEnabled}

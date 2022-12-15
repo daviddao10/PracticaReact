@@ -95,24 +95,25 @@ const Adverts = props =>{
           />
           <h2>Sale</h2>
           <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale('')}} />
-          <label for="sale">Todo</label><br/>
+          <label name="sale">Todo</label><br/>
           <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale(false)}} />
-          <label for="sale">Buy</label><br/>
+          <label name="sale">Buy</label><br/>
           <input value={sale} type="radio" id="sale" name="sale"  onChange={()=>{setSale(true)}}/>
-          <label for="sale">Sell</label><br/>
+          <label name="sale">Sell</label><br/>
           <h2>Tags</h2>
           <input value={tags} type="checkbox"  onChange={()=>{setTags("lifestyle")}} onClick={a} />
-          <label for="tags">lifestyle</label><br/>
+          <label name="tags">lifestyle</label><br/>
           <input value={tags} type="checkbox" onChange={()=>{setTags("mobile")}}/>
-          <label for="tags">mobile</label><br/>
+          <label name="tags">mobile</label><br/>
           <input value={tags} type="checkbox"  onChange={()=>{setTags("motor")}} />
-          <label for="tags">motor</label><br/>
+          <label name="tags">motor</label><br/>
           <input value={tags} type="checkbox" onChange={()=>{setTags("work")}}/>
-          <label for="tags">work</label><br/>
+          <label name="tags">work</label><br/>
           <Button>Filter</Button>
           <Button>Reset</Button>
           |
         </form>
+        <h1>Anuncios</h1>
             <div>
         {adverts.length ? (
           <ul>
@@ -130,7 +131,7 @@ const Adverts = props =>{
         )}
       </div>
         </Page>
-      
+    
     )
 }
 
