@@ -42,14 +42,43 @@ const EmptyList = () => (
 }
 
 const Adverts = props =>{
-    const adverts = useAdverts()
-
+    let adverts = useAdverts()
+    
+    /*
+createdAt: "2022-11-17T04:32:22.000Z"
+id: "0d48b9b1-7a93-4a49-8e23-ac973ba3a9d7"
+name: sandalias"
+photo: null
+price: 120000
+sale: false
+tags: Array(1): 
+"mobile"
+*/
+    
     const [name, setName] = useState('')
-    const [sale, setSale] = useState(Boolean)
+    console.log(typeof name)
+    const [sale, setSale] = useState()
     const [price, setPrice] = useState(Number)
     const [tags, setTags]  = useState('')
     const [filterTags, setFilterTags] = useState([])
-    
+
+    const advertsFilter = adverts.filter((advert)=>{
+      //sale=== '' ? sale = Boolean : sale 
+      if (advert.sale === sale ){
+        return true;
+      }
+      return false
+})
+
+    const hadleFilter= event=>{
+      event.preventDefault();
+     // adverts = advertsFilter
+
+      //console.log(adverts);
+    }
+
+
+
     const borrarItemen= function (array,a) {
       for (var i = 0; i < array.length; i++) {
        if (array[i] == a) {
@@ -78,13 +107,13 @@ const Adverts = props =>{
       setFilterTags(tagsInFileter(filterTags,tags))
     }
     
-  console.log(tags)
-   console.log(filterTags)
+
 
 
     return(
         <Page title="Do you want to buy?" {...props}>
-        <form>
+
+        <form onSubmit={hadleFilter}>
           <h1>Filtros</h1>
           <FormField
           type="text"
@@ -93,9 +122,15 @@ const Adverts = props =>{
           onChange={handleName}
           label='name'
           />
+          <br/>
+          <FormField
+          type="number"
+          placeholder="The price"
+          value={price}
+          onChange={handlePrice}
+          label='price'
+          />
           <h2>Sale</h2>
-          <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale('')}} />
-          <label name="sale">Todo</label><br/>
           <input value={sale} type="radio" id="sale" name="sale" onChange={()=>{setSale(false)}} />
           <label name="sale">Buy</label><br/>
           <input value={sale} type="radio" id="sale" name="sale"  onChange={()=>{setSale(true)}}/>
@@ -109,14 +144,16 @@ const Adverts = props =>{
           <label name="tags">motor</label><br/>
           <input value={tags} type="checkbox" onChange={()=>{setTags("work")}}/>
           <label name="tags">work</label><br/>
-          <Button>Filter</Button>
+          <Button  variant="primary"
+        className="loginForm-submit"  >Filter</Button>
           <Button>Reset</Button>
-          |
+          
         </form>
         <h1>Anuncios</h1>
             <div>
         {adverts.length ? (
           <ul>
+            
             {adverts.map(adverts => (
               <li key={adverts.id}>
                 <Link to={`/adverts/${adverts.id}`}>
